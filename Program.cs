@@ -62,7 +62,7 @@ public class WebPageLinkExtractor
                 // Anzeige bei welchem Link er gerade ist (gekürzt auf max. 16 Stellen
                 if (link.Length < 30) { Console.WriteLine(link.Substring(14)); } else { Console.WriteLine(link.Substring(14, 16)); }
                 Console.WriteLine(titles[i]);
-                i++;
+                
 
 
                 // Unterseite öffnen
@@ -101,6 +101,7 @@ public class WebPageLinkExtractor
                         writer.WriteLine("<li><a href=\"https://aniworld.to" + link + "\">" + titles[i] + "</a>" + " :&nbsp;" + srcs.Count + "&nbsp;Folgen</li>");
                     }
                 }
+                i++;
 
             }
             // Fuß der Linksammler.html Datei schreiben
