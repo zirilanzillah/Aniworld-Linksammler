@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Aniworld_Linksammler_deutsch</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>C:\Users\ziril\.nuget\packages\htmlagilitypack\1.12.1\lib\net8.0\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
