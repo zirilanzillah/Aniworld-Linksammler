@@ -104,6 +104,7 @@ public class WebPageLinkExtractor
 
             }
             // Fuß der Linksammler.html Datei schreiben
+            // test
             writer.WriteLine("  </ul></div></body>\r\n</html>");
 
         }
