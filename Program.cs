@@ -94,11 +94,11 @@ public class WebPageLinkExtractor
                     // Unterschiedung von "Folgen" und "Folge"
                     if (srcs.Count == 1)
                     {
-                        writer.WriteLine("<li><a href=\"https://aniworld.to" + link + "\">" + titles[i] + "</a>" + " :&nbsp;" + srcs.Count + "&nbsp;Folge</li>");
+                        writer.WriteLine($"<li><a href=\"https://aniworld.to{link}\">{titles[i]}</a>:&nbsp;{srcs.Count}&nbsp;Folge</li>");
                     }
                     else
                     {
-                        writer.WriteLine("<li><a href=\"https://aniworld.to" + link + "\">" + titles[i] + "</a>" + " :&nbsp;" + srcs.Count + "&nbsp;Folgen</li>");
+                        writer.WriteLine($"<li><a href=\"https://aniworld.to{link}\">{titles[i]}</a>:&nbsp;{srcs.Count} &nbsp;Folgen</li>");
                     }
                 }
                 i++;
