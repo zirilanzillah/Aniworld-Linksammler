@@ -27,7 +27,6 @@ public class WebPageLinkExtractor
 
         // Äußere Schleife
         // Alle Links die mit /anime/stream/ anfangen aus dem HTML-Code extrahieren
-
         var links = htmlDoc.DocumentNode.SelectNodes("//a")
             .Where(node => node.Attributes.Contains("href") && node.Attributes["href"].Value.StartsWith("/anime/stream/"))
             .Select(node => node.Attributes["href"].Value)
@@ -54,16 +53,19 @@ public class WebPageLinkExtractor
                 "</head>\r\n  " +
                 "<body><div style=\"columns:50px 4;\"><ul style=\"list-style-type:none;\">");
 
+            // i als Variable für die Title in Titles
+            int i = 0;
+
             // Innere Schleife
             // Pro Link, diesen öffnen und nach einem Deutsch sprachigem Link suchen
-            int i = 0;
             foreach (string link in links)
             {
                 // Anzeige bei welchem Link er gerade ist (gekürzt auf max. 16 Stellen
                 if (link.Length < 30) { Console.WriteLine(link.Substring(14)); } else { Console.WriteLine(link.Substring(14, 16)); }
-                Console.WriteLine(titles[i]);
-                
 
+                // Wenn im Titel "Stream anschauen" enthalten ist, diesen entfernen
+                if (titles[i].Contains(" Stream anschauen")) { titles[i] = titles[i].Replace(" Stream anschauen", ""); }
+                Console.WriteLine(titles[i]);
 
                 // Unterseite öffnen
                 string urlinner = "https://aniworld.to" + link;
@@ -81,7 +83,6 @@ public class WebPageLinkExtractor
                 }
 
                 // Alle img tags auslesen aus einer bestimmten Anime Serie
-
                 var srcs = htmlDocinner.DocumentNode.SelectNodes("//img")
                     .Where(img => img.Attributes.Contains("src") && img.Attributes["src"].Value.StartsWith("/public/img/german.svg"))
                     .Select(img => img.Attributes["src"].Value)
@@ -94,13 +95,14 @@ public class WebPageLinkExtractor
                     // Unterschiedung von "Folgen" und "Folge"
                     if (srcs.Count == 1)
                     {
-                        writer.WriteLine($"<li><a href=\"https://aniworld.to{link}\">{titles[i]}</a>:&nbsp;{srcs.Count}&nbsp;Folge</li>");
+                        writer.WriteLine($"<li><a style=\"text-decoration: none; \" href=\"https://aniworld.to{link}\">{titles[i]}</a>:&nbsp;{srcs.Count}&nbsp;Folge</li>");
                     }
                     else
                     {
-                        writer.WriteLine($"<li><a href=\"https://aniworld.to{link}\">{titles[i]}</a>:&nbsp;{srcs.Count} &nbsp;Folgen</li>");
+                        writer.WriteLine($"<li><a style=\"text-decoration: none; \" href=\"https://aniworld.to{link}\">{titles[i]}</a>:&nbsp;{srcs.Count} &nbsp;Folgen</li>");
                     }
                 }
+                // i als Variable für die Title in Titles
                 i++;
 
             }
